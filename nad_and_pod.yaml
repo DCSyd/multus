@@ -54,5 +54,5 @@ spec:
           imagePullPolicy: Always
           name: container-0
           resources: {}
-          securityContext:
-            privileged: true
+#          securityContext:
+#            privileged: true
