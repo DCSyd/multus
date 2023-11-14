@@ -17,19 +17,37 @@ spec:
       }
     }'
 ---
-apiVersion: v1
-kind: Pod
-metadata:
-  name: multus-test-pod
-  annotations:
-    k8s.v1.cni.cncf.io/networks: macvlan
+apiVersion: apps/v1
+kind: Deployment
+  name: multus-test
+  namespace: default
 spec:
-  containers:
-  - name: samplepod
-    command: ["/bin/ash", "-c", "trap : TERM INT; sleep infinity & wait"]
-    image: busybox
-#    securityContext:
-#      capabilities:
-#        add:
-#        - NET_ADMIN
-#        - NET_RAW
+  replicas: 1
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-default-multus-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: macvlan
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-default-multus-test
+      namespace: default
+    spec:
+      affinity: {}
+      containers:
+        - command:
+            - sleep
+            - infinity
+          image: busybox
+          imagePullPolicy: Always
+          name: container-0
+          resources: {}
+          securityContext:
+            privileged: true
