@@ -20,3 +20,15 @@ spec:
                 "gateway": "10.0.0.1"
       }
     }'
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multus-test-pod
+  annotations:
+    k8s.v1.cni.cncf.io/networks: macvlan
+spec:
+  containers:
+  - name: samplepod
+    command: ["/bin/ash", "-c", "trap : TERM INT; sleep infinity & wait"]
+    image: busybox
