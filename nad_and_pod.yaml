@@ -5,9 +5,9 @@ metadata:
 spec:
   config: '{
     "cniVersion": "0.3.1",
-    "name": "macvlan",
-    "type": "macvlan",
-    "mode": "bridge",
+    "name": "ipvlan",
+    "type": "vlan",
+    "mode": "l2",
     "master": "eth1",
       "ipam": {
         "type": "host-local",
@@ -26,7 +26,7 @@ kind: Pod
 metadata:
   name: multus-test-pod
   annotations:
-    k8s.v1.cni.cncf.io/networks: macvlan
+    k8s.v1.cni.cncf.io/networks: ipvlan
 spec:
   containers:
   - name: samplepod
