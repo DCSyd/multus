@@ -3,11 +3,16 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       site: site1
-  kustomize:
-    dir: ip-net/site1
+  yaml:
+    ip-net:
+    # Refers to overlays/scale3 folder
+    - site1
+  
 - name: site2
   clusterSelector:
     matchLabels:
       site: site2
-  kustomize:
-    dir: ip-net/site2
+  yaml:
+    ip-net:
+    # Refers to overlays/scale3 folder
+    - site2
