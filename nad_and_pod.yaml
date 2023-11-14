@@ -27,7 +27,7 @@ kind: Pod
 metadata:
   name: multus-test-pod
   annotations:
-    k8s.v1.cni.cncf.io/networks: ipvlan
+    k8s.v1.cni.cncf.io/networks: macvlan
 spec:
   containers:
   - name: samplepod
