@@ -13,7 +13,8 @@ spec:
         "type": "host-local",
         "subnet": "10.0.0.0/24",
         "rangeStart": "10.0.0.201",
-        "rangeEnd": "10.0.0.205" #,
+        "rangeEnd": "10.0.0.205" 
+        #,
 #        "routes": [
 #                  { "dst": "10.10.0.0/8" }
 #                  ],
